@@ -16,6 +16,7 @@ In every iteration of selection sort, the minimum element (considering ascending
 7. Stop
 
 ### Example
+```
 array : [23, 45, 67, 27, 32, 87, 90, 12]
 Starting from 0 to n, find the minimum element and insert at a[0]
 [12, 45, 67, 27, 32, 87, 90, 23]
@@ -25,3 +26,4 @@ Starting from 0 to n, find the minimum element and insert at a[0]
 [12, 23, 27, 32, 45, 87, 90, 67]
 [12, 23, 27, 32, 45, 67, 90, 87]
 [12, 23, 27, 32, 45, 67, 87, 90]
+```
