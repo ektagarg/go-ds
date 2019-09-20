@@ -17,17 +17,12 @@ Best-case complexity: o(1)
 ```
 Worst-case complexity: o(logn)
 Best-case complexity: o(1)
+```
 
 ###### Sorting
-1. Bubble Sort: It is a comparision-based sorting algorithm where each pair of adjacent elements is compared and elements get swapped if they are not in order.
-```
-Array: 23,98,67,45,12,24
-preocedure: Take first pair and swap if it's not in order and repeat until la
-iteration 1:
-step 1: 23,98,67,45,12,24
-step 2: 23,67,98,45,12,24
-step 3: 23,67,45,98,12,24
-step 4: 23,67,45,12,98,24
-step 5: 23,67,45,12,24,98
 
-```
+1. Bubble Sort: It is a comparision-based sorting algorithm where each pair of adjacent elements is compared and elements get swapped if they are not in order.
+
+2. Insertion Sort: Insertion sort is based on the idea that one element from the input elements is consumed in each iteration to find its correct position i.e, the position to which it belongs in a sorted array.
+
+3. Selection Sort: The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array.
