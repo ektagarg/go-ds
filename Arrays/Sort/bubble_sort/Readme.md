@@ -1,6 +1,13 @@
 # Bubble Sort
 It is a comparision-based sorting algorithm where each pair of adjacent elements is compared and elements get swapped if they are not in order.
 
+### Complexity
+```
+Worst Case Time Complexity: O(n2)
+Best Case Time Complexity: O(n) when it's already sorted
+Average Time Complexity: O(n2)
+```
+
 ### Example 
 ```
 Array: 23,98,67,45,12,24
