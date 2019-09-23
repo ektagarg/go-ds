@@ -22,24 +22,41 @@ Best-case complexity: o(1)
 ###### Sorting
 
 1. Bubble Sort: It is a comparision-based sorting algorithm where each pair of adjacent elements is compared and elements get swapped if they are not in order.
-###### Complexity
 ```
 Worst Case Time Complexity: O(n2)
 Best Case Time Complexity: O(n)
 ```
 
 2. Insertion Sort: Insertion sort is based on the idea that one element from the input elements is consumed in each iteration to find its correct position i.e, the position to which it belongs in a sorted array.
-###### Complexity
 ```
 Worst Case Time Complexity: O(n2)
 Best Case Time Complexity: O(n)
 ```
 
 3. Selection Sort: The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array.
-###### Complexity
 ```
 Worst Case Time Complexity: O(n2)
 Best Case Time Complexity: O(n2)
 ```
 
-4. Quick Sort:
+4. Quick Sort: Quick sort is highly efficient algorithm which is based on Divide and Conquer strategy. So, the technique is to divide the given array into smaller arrays.
+A large array is partitioned into two arrays one of which holds values smaller than a specific value, say pivot, based on which the partition is made and another array holds values greater than the pivot value.
+```
+Worst Case Time Complexity: O(n2)
+Best Case Time Complexity: O(nlog(n)) 
+Average Time Complexity: O(nlog(n))
+```
+
+5. Merge Sort: Like quick sort, merge sort is based on divide and conquer methodology. It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves.
+```
+Worst Case Time Complexity: O(nlog(n))
+Best Case Time Complexity: O(nlog(n)) 
+Average Time Complexity: O(nlog(n))
+```
+
+6. Heap Sort: Heap sort in comparision based, in-memory sorting technique based on binary heap data structures. It involves building a Heap data structure from the given array and then utilizing the Heap to sort the array.
+```
+Worst Case Time Complexity: O(nlog(n))
+Best Case Time Complexity: O(nlog(n)) 
+Average Time Complexity: O(nlog(n))
+```
