@@ -7,13 +7,13 @@ An array is a data structure that contains fixed-sized collection of elements of
 
 Operations on Arrays:
 ###### Searching
-1. Linear Search: A linear search or sequential search is a method for finding an element within a list. It sequentially checks each element of the list until a match is found or the whole list has been searched. 
+**1. Linear Search:** A linear search or sequential search is a method for finding an element within a list. It sequentially checks each element of the list until a match is found or the whole list has been searched. 
 ```
 Worst-case complexity: o(n)
 Best-case complexity: o(1)
 ```
 
-2. Binary Search: A binary search or half-interval search aims to find the element in a sorted array by first comparing target element with middle element to see whether the element is in first half or second half and keep repeating this until it finds the target element.
+**2. Binary Search:** A binary search or half-interval search aims to find the element in a sorted array by first comparing target element with middle element to see whether the element is in first half or second half and keep repeating this until it finds the target element.
 ```
 Worst-case complexity: o(logn)
 Best-case complexity: o(1)
@@ -21,25 +21,25 @@ Best-case complexity: o(1)
 
 ###### Sorting
 
-1. Bubble Sort: It is a comparision-based sorting algorithm where each pair of adjacent elements is compared and elements get swapped if they are not in order.
+**1. Bubble Sort:** It is a comparision-based sorting algorithm where each pair of adjacent elements is compared and elements get swapped if they are not in order.
 ```
 Worst Case Time Complexity: O(n2)
 Best Case Time Complexity: O(n)
 ```
 
-2. Insertion Sort: Insertion sort is based on the idea that one element from the input elements is consumed in each iteration to find its correct position i.e, the position to which it belongs in a sorted array.
+**2. Insertion Sort:** Insertion sort is based on the idea that one element from the input elements is consumed in each iteration to find its correct position i.e, the position to which it belongs in a sorted array.
 ```
 Worst Case Time Complexity: O(n2)
 Best Case Time Complexity: O(n)
 ```
 
-3. Selection Sort: The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array.
+**3. Selection Sort:** The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array.
 ```
 Worst Case Time Complexity: O(n2)
 Best Case Time Complexity: O(n2)
 ```
 
-4. Quick Sort: Quick sort is highly efficient algorithm which is based on Divide and Conquer strategy. So, the technique is to divide the given array into smaller arrays.
+**4. Quick Sort:** Quick sort is highly efficient algorithm which is based on Divide and Conquer strategy. So, the technique is to divide the given array into smaller arrays.
 A large array is partitioned into two arrays one of which holds values smaller than a specific value, say pivot, based on which the partition is made and another array holds values greater than the pivot value.
 ```
 Worst Case Time Complexity: O(n2)
@@ -47,14 +47,14 @@ Best Case Time Complexity: O(nlog(n))
 Average Time Complexity: O(nlog(n))
 ```
 
-5. Merge Sort: Like quick sort, merge sort is based on divide and conquer methodology. It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves.
+**5. Merge Sort:** Like quick sort, merge sort is based on divide and conquer methodology. It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves.
 ```
 Worst Case Time Complexity: O(nlog(n))
 Best Case Time Complexity: O(nlog(n)) 
 Average Time Complexity: O(nlog(n))
 ```
 
-6. Heap Sort: Heap sort in comparision based, in-memory sorting technique based on binary heap data structures. It involves building a Heap data structure from the given array and then utilizing the Heap to sort the array.
+**6. Heap Sort:** Heap sort in comparision based, in-memory sorting technique based on binary heap data structures. It involves building a Heap data structure from the given array and then utilizing the Heap to sort the array.
 ```
 Worst Case Time Complexity: O(nlog(n))
 Best Case Time Complexity: O(nlog(n)) 
