@@ -15,6 +15,7 @@ Average Time Complexity: O(n2)
 2. Pick element arr[i] and insert it into sorted sequence arr[0…i-1]
 
 ### Example
+```
 Array: 12, 11, 13, 5, 6
 
 1. Let's loop for i = 1 (second element of the array) to 4 (last element of the array)
@@ -30,3 +31,4 @@ Array: 12, 11, 13, 5, 6
 
 5. i = 4. 6 will move to position after 5, and elements from 11 to 13 will move one position ahead of their current position.
     5, 6, 11, 12, 13
+    ```
