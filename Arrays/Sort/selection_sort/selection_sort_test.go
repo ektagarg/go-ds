@@ -12,5 +12,5 @@ func TestSelectionSort(t *testing.T) {
 	sorted := SelectionSort(a)
 	result := []int{12, 23, 27, 32, 67, 87, 90}
 
-	assert.Equal(t, result, sorted, "Oops.. bubble sort didn't work!!")
+	assert.Equal(t, result, sorted, "Oops.. Selection sort didn't work!!")
 }
