@@ -60,6 +60,8 @@ simply apply insertion sort
 ```
 
 ### Complexity
+```
 Worst complexity: Depends on gap sequence
 Average complexity: n*log(n)^2 or n^(3/2)
 Best complexity: n
+```

@@ -48,7 +48,9 @@ The heapify procedure calls itself recursively to build heap
 ```
 
 ### Complexity
+```
 Best-case: o(nlogn)
 Worst-case: o(nlogn)
 Avg-case: o(nlogn)
 Space: o(n)
+```

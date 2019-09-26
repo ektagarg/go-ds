@@ -1,7 +1,7 @@
 # Radix Sort
 It is not based on comparision-based algorithms, instead it is an integer sorting algorithm that sorts data with integer keys by grouping the keys by individual digits that share the same significant position and value.
 
-Radix sort takes in a list of n integers which are in base b (the radix) and so each number has at most d digits where d = |log_b(k) +1| and k is the largest number in the list. For example, three digits are needed to represent decimal 104 (in base 10). It is important that radix sort can work with any base since the running time of the algorithm, O(d(n+b))O(d(n+b)), depends on the base it uses. The algorithm runs in linear time when b and n are of the same size magnitude, so knowing nn, bb can be manipulated​ to optimize the running time of the algorithm.
+Radix sort takes in a list of n integers which are in base b (the radix) and so each number has at most d digits where d = |log_b(k) +1| and k is the largest number in the list. 
 
 ### Algorithm
 1) For each digit i where i varies from least significant digit to the most significant digit.
@@ -54,5 +54,7 @@ Iteration 3:
 ```
 
 ### Complexity
+```
 Time Complexity: o(kn) 
 where k is total number of digits in the largest number bcs that is number of iterations
+```
