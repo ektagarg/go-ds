@@ -24,3 +24,10 @@ Average complexity: n*log(n)^2 or n^(3/2)
 Best complexity: n
 
 ### Example
+12, 90, 23, 87, 32, 67, 27
+h = h*3 + 1 where h=1; h=4
+
+Pass 1:
+i=1; j=4
+12, 90, 23, 87
+
