@@ -54,5 +54,5 @@ Iteration 3:
 ```
 
 ### Complexity
-time complexity: o(kn) 
+Time Complexity: o(kn) 
 where k is total number of digits in the largest number bcs that is number of iterations

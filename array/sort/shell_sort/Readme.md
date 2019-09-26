@@ -18,16 +18,48 @@ Step 2 − Divide the list into smaller sub-list of equal interval h
 Step 3 − Sort these sub-lists using insertion sort
 Step 3 − Repeat until complete list is sorted
 
-### Complexity
-Worst complexity: Depends on gap sequence
-Average complexity: n*log(n)^2 or n^(3/2)
-Best complexity: n
-
 ### Example
+```
 12, 90, 23, 87, 32, 67, 27
 h = h*3 + 1 where h=1; h=4
 
 Pass 1:
 i=1; j=4
-12, 90, 23, 87
+12, 90, 23, 87, 32, 67, 27
 
+i=2; j=5
+12, 32, 23, 87, 90, 67, 27
+
+i=3; j=6
+12, 32, 23, 87, 90, 67, 27
+
+i=4; j=7
+12, 32, 23, 27, 90, 67, 87
+
+Pass 2:
+now h = h/2 = 2
+i=1; j=3
+12, 32, 23, 27, 90, 67, 87
+
+i=2; j=4
+12, 27, 23, 32, 90, 67, 87
+
+i=3; j=5
+12, 27, 23, 32, 90, 67, 87
+
+i=4; j=6
+12, 27, 23, 32, 90, 67, 87
+
+i=5; j=7
+12, 27, 23, 32, 87, 67, 90
+
+Pass 3:
+now h = h/2 = 1
+simply apply insertion sort
+[12, 23, 27, 67, 87, 90]
+```
+
+### Complexity
+Worst complexity: Depends on gap sequence
+Average complexity: n*log(n)^2 or n^(3/2)
+Best complexity: n

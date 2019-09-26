@@ -6,13 +6,6 @@ Conceptually, a merge sort works as follows:
 Divide the unsorted list into n sublists, each containing one element (a list of one element is considered sorted).
 Repeatedly merge sublists to produce new sorted sublists until there is only one sublist remaining. This will be the sorted list.
 
-### Complexity
-```
-Worst Case Time Complexity: O(nlog(n))
-Best Case Time Complexity: O(nlog(n)) 
-Average Time Complexity: O(nlog(n))
-```
-
 ### Algorithm
 MergeSort(arr[], l,  r)
 If r > l
@@ -25,3 +18,26 @@ If r > l
      4. Merge the two halves sorted in step 2 and 3:
              Call merge(arr, l, m, r)
 
+### Example
+```
+                                [35,26,47,3,8,89,11]
+                                /                 \      
+                        [35,26,47,3]            [8,89,11]
+                        /       \               /       \
+                [35,26]        [47,3]       [8,89]     [11]   
+                /    \          /   \         /  \        \
+            [35]    [26]    [47]     [3]     [8]  [89]    [11]
+                \    /          \     /        \   /    /
+                [26,35]         [3,47]        [8,89]  [11]
+                        \       /                 \    /
+                        [3,26,35,47]              [8,11,89]
+                                \                  /
+                                [3,8,11,26,35,47,89]
+```
+
+### Complexity
+```
+Worst Case Time Complexity: O(nlog(n))
+Best Case Time Complexity: O(nlog(n)) 
+Average Time Complexity: O(nlog(n))
+```

@@ -3,12 +3,6 @@ Insertion sort is based on the idea that one element from the input elements is 
 
 It iterates the input elements by growing the sorted array at each iteration. It compares the current element with the largest value in the sorted array. If the current element is greater, then it leaves the element in its place and moves on to the next element else it finds its correct position in the sorted array and moves it to that position. This is done by shifting all the elements, which are larger than the current element, in the sorted array to one position ahead.
 
-### Complexity
-```
-Worst Case Time Complexity: O(n2)
-Best Case Time Complexity: O(n) when it's already sorted
-Average Time Complexity: O(n2)
-```
 
 ### Algorithm
 1. Loop from i = 1 to n-1.
@@ -31,4 +25,11 @@ Array: 12, 11, 13, 5, 6
 
 5. i = 4. 6 will move to position after 5, and elements from 11 to 13 will move one position ahead of their current position.
     5, 6, 11, 12, 13
-    ```
+```
+
+### Complexity
+```
+Worst Case Time Complexity: O(n2)
+Best Case Time Complexity: O(n) when it's already sorted
+Average Time Complexity: O(n2)
+```
