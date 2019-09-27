@@ -38,6 +38,8 @@ func (list *LinkedList) InsertBeginning(node *Node) {
 	if list.Len == 0 {
 		list.Start = node
 		list.End = node
+		list.Len++
+		return
 	}
 
 	head := list.Start
@@ -52,6 +54,8 @@ func (list *LinkedList) InsertEnd(node *Node) {
 	if list.Len == 0 {
 		list.Start = node
 		list.End = node
+		list.Len++
+		return
 	}
 
 	head := list.Start
@@ -74,6 +78,8 @@ func (list *LinkedList) InsertAtPosition(node *Node, pos int) {
 	if list.Len == 0 {
 		list.Start = node
 		list.End = node
+		list.Len++
+		return
 	}
 
 	head := list.Start
@@ -104,11 +110,11 @@ func (list *LinkedList) InsertAtPosition(node *Node, pos int) {
 func (list *LinkedList) TraverseAndPrint() {
 	head := list.Start
 	for {
-		fmt.Println(head.Data)
+		fmt.Print(head.Data)
 		if head.Next == nil {
 			break
 		}
 		head = head.Next
-		fmt.Println("->")
+		fmt.Print("->")
 	}
 }
