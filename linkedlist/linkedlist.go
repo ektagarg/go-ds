@@ -1,4 +1,4 @@
-package insertion
+package linkedlist
 
 import "fmt"
 
@@ -66,6 +66,7 @@ func (list *LinkedList) InsertEnd(node *Node) {
 			head.Next = node
 			node.Next = nil
 			list.End = node
+			list.Len++
 			break
 		}
 		head = head.Next
@@ -99,10 +100,87 @@ func (list *LinkedList) InsertAtPosition(node *Node, pos int) {
 			// here we need to insert
 			node.Next = head.Next
 			head.Next = node
+			list.Len++
 			break
 		}
 		currentLoc++
 		head = head.Next
+	}
+}
+
+//DeleteBeginning ... Delete from the start of the list
+func (list *LinkedList) DeleteBeginning() int {
+	//check if list if empty
+	if list.Len == 0 {
+		return 0
+	} else if list.Len == 1 {
+		head := list.Start
+		list.Start = nil
+		list.End = nil
+		list.Len--
+		return head.Data
+	} else {
+		head := list.Start
+		list.Start = head.Next
+		list.Len--
+		return head.Data
+	}
+}
+
+//DeleteEnd ... Delete from the end of the list
+func (list *LinkedList) DeleteEnd() int {
+	//check if list if empty
+	if list.Len == 0 {
+		return 0
+	} else if list.Len == 1 {
+		head := list.Start
+		list.Start = nil
+		list.End = nil
+		list.Len--
+		return head.Data
+	} else {
+		head := list.Start
+		previous := list.Start
+		//traverse till end
+		for {
+			if head.Next == nil {
+				break
+			}
+			previous = head
+			head = head.Next
+		}
+		previous.Next = nil
+		list.Len--
+		return previous.Data
+	}
+}
+
+//DeleteFromPosition ... Delete from a specific position
+func (list *LinkedList) DeleteFromPosition(pos int) int {
+	//check if list if empty
+	if list.Len == 0 {
+		return 0
+	} else if list.Len == 1 {
+		head := list.Start
+		list.Start = nil
+		list.End = nil
+		list.Len--
+		return head.Data
+	} else {
+		head := list.Start
+		previous := list.Start
+		if pos == 1 {
+			//call delete from Beginning
+			return list.DeleteBeginning()
+		}
+		for i := 0; i < pos-1; i++ {
+			previous = head
+			head = previous.Next
+		}
+		previous.Next = head.Next
+		head.Next = nil
+		list.Len--
+		return head.Data
 	}
 }
 
