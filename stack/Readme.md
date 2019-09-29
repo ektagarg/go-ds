@@ -7,6 +7,7 @@ To understand it in a better way, we can take this example of pile of plates of 
 1. Push: When as elemnt is inserted in stack, the operation is called Push.
 2. Pop: When an element is deleted from stack, the operation is called Pop.
 
+```
                           push 3                        Pop: (Element after performing pop: 3)
 
                             3                             
@@ -14,3 +15,4 @@ To understand it in a better way, we can take this example of pile of plates of 
 43                          43                          43
 33                          33                          33
 34                          34                          34
+```
