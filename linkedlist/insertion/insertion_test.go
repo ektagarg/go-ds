@@ -20,15 +20,15 @@ func TestInsertion(t *testing.T) {
 
 	// check if the first element is actually 93
 	head := linkedlist.Start
-	assert.Equal(t, 93, head.Data, "Linked list length insert at beginning didn't work!")
+	assert.Equal(t, 93, head.Data, "Linked list insert at beginning didn't work!")
 
-	// // insert in end
+	// insert in end
 	node4 := NewNode(222)
 	linkedlist.InsertEnd(node4)
 
 	// check if the last element is actually 222
 	end := linkedlist.End
-	assert.Equal(t, 222, end.Data, "Linked list length insert at end didn't work!")
+	assert.Equal(t, 222, end.Data, "Linked list insert at end didn't work!")
 
 	//insert at a particular position
 	node5 := NewNode(555)
@@ -37,10 +37,11 @@ func TestInsertion(t *testing.T) {
 	for {
 		fmt.Println(head.Data)
 		if count == 3 {
-			assert.Equal(t, 555, end.Data, "Linked list length insert at end didn't work!")
+			assert.Equal(t, 555, head.Data, "Linked list insert at any position didn't work!")
 			break
 		}
 		head = head.Next
+		count++
 	}
 
 }
