@@ -75,12 +75,27 @@ Worst complexity: Depends on gap sequence
 Average complexity: n*log(n)^2 or n^(3/2)
 Best complexity: n
 ```
-# Linked lists
+# [Linked lists](linkedlist/Readme.md)
 It is a data structure for storing collections of data with the following properties:
 - Successive elements are connected via pointers
 - Last element point to NULL
 - Can grow or shrink in size during the execution of the program
 - Can be made just as long as required(until system memory exhausts)
 
-4 -> 12 -> 7 -> 40 -> NULL
+### Operations:
+Insertion:
+1. Insertion at the beginning
+2. Insertion at the end
+3. Insertion in the middle
 
+Deletion:
+1. Deletion from the beginning
+2. Deletion from the end
+3. Deletion from the middle
+
+# [Stack](stack/Readme.md)
+A stack is an ordered list in which insertion and deletion are done at one end, called top. The last element inserted is the first one to be deleted. Hence it is called LIFO(Last In First Out) or First In Last Out(FILO) list.
+
+### Operations:
+1. Push
+2. Pop

@@ -54,10 +54,3 @@ func (st *Stack) Print() {
 		fmt.Println("index, element:", i, st.element[i])
 	}
 }
-
-func main() {
-	st := NewStack()
-
-	fmt.Println(st.Pop())
-
-}
