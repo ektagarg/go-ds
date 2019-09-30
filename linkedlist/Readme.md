@@ -1,9 +1,9 @@
 # Linked lists
 It is a data structure for storing collections of data with the following properties:
-- Successive elements are connected via pointers
-- Last element point to NULL
-- Can grow or shrink in size during the execution of the program
-- Can be made just as long as required(until system memory exhausts)
+* Successive elements are connected via pointers
+* Last element point to NULL
+* Can grow or shrink in size during the execution of the program
+* Can be made just as long as required(until system memory exhausts)
 
 ###### Linkedlist Operations
 ### 1. Inserting a node before the head(at beginning)

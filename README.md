@@ -77,10 +77,10 @@ Best complexity: n
 ```
 # [Linked lists](linkedlist/Readme.md)
 It is a data structure for storing collections of data with the following properties:
-- Successive elements are connected via pointers
-- Last element point to NULL
-- Can grow or shrink in size during the execution of the program
-- Can be made just as long as required(until system memory exhausts)
+* Successive elements are connected via pointers
+* Last element point to NULL
+* Can grow or shrink in size during the execution of the program
+* Can be made just as long as required(until system memory exhausts)
 
 ### Operations:
 Insertion:
