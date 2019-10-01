@@ -1,6 +1,7 @@
 package doublylinklist
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -52,4 +53,26 @@ func TestInsertMiddle(t *testing.T) {
 		head = head.Next
 		count++
 	}
+}
+
+func TestDeleteBeginning(t *testing.T) {
+	// delete from beginnning
+	deleted := dll.DeleteFirst()
+	assert.Equal(t, 4, dll.Length, "DeleteBeginning: Doubly Linked list length is incorrect!")
+	assert.Equal(t, 93, deleted, "DeleteBeginning: Deleted Element is incorrect!")
+}
+
+func TestDeleteEnd(t *testing.T) {
+	// delete from end
+	deleted := dll.DeleteLast()
+	fmt.Println(deleted)
+	assert.Equal(t, 3, dll.Length, "DeleteEnd: Linked list length is incorrect!")
+	assert.Equal(t, 222, deleted, "DeleteEnd: Deleted Element is incorrect!")
+}
+
+func TestDeleteFromPosition(t *testing.T) {
+	// delete from any position
+	deleted := dll.DeleteMiddle(2)
+	assert.Equal(t, 2, dll.Length, "DeleteFromPosition: Linked list length is incorrect!")
+	assert.Equal(t, 2, deleted, "DeleteFromPosition: Deleted Element is incorrect!")
 }

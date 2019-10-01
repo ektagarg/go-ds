@@ -2,7 +2,7 @@ package doublylinklist
 
 import "fmt"
 
-// newNode of doubly linked list
+//Node ... newNode of doubly linked list
 type Node struct {
 	Data int
 	Prev *Node // points to previous node in link list
@@ -34,8 +34,16 @@ func NewDoublylinklist() Doublylinklist {
 	}
 }
 
-// CheckIfEmpty ... check if doubly link list is empty
-func (dll *Doublylinklist) CheckIfEmpty(newNode *Node) bool {
+//CheckIfEmpty ... check if empty
+func (dll *Doublylinklist) CheckIfEmpty() bool {
+	if dll.Length == 0 {
+		return true
+	}
+	return false
+}
+
+// CheckIfEmptyAndAdd ... check if doubly link list is empty
+func (dll *Doublylinklist) CheckIfEmptyAndAdd(newNode *Node) bool {
 	// check if list is empty
 	if dll.Length == 0 {
 		// insert first node in doubly linked list
@@ -49,7 +57,7 @@ func (dll *Doublylinklist) CheckIfEmpty(newNode *Node) bool {
 
 //InsertBeginning ... insert in the beginning of doubly linked list
 func (dll *Doublylinklist) InsertBeginning(newNode *Node) {
-	if !(dll.CheckIfEmpty(newNode)) {
+	if !(dll.CheckIfEmptyAndAdd(newNode)) {
 		head := dll.Start
 		// update newnode links - prev and next
 		newNode.Next = head
@@ -68,7 +76,7 @@ func (dll *Doublylinklist) InsertBeginning(newNode *Node) {
 
 //InsertEnd ... inserts a node in the end of doubly linked list
 func (dll *Doublylinklist) InsertEnd(newNode *Node) {
-	if !(dll.CheckIfEmpty(newNode)) {
+	if !(dll.CheckIfEmptyAndAdd(newNode)) {
 		head := dll.Start
 		for i := 0; i < dll.Length; i++ {
 			if head.Next == nil {
@@ -92,11 +100,10 @@ func (dll *Doublylinklist) InsertEnd(newNode *Node) {
 
 // InsertMiddle ... insert between two nodes in doubly linkedlist
 func (dll *Doublylinklist) InsertMiddle(newNode *Node, loc int) {
-	if !(dll.CheckIfEmpty(newNode)) {
+	if !(dll.CheckIfEmptyAndAdd(newNode)) {
 		head := dll.Start
 		for i := 1; i < dll.Length; i++ {
 			if i == loc {
-				fmt.Println("Got the location", i)
 				// update newnode links - prev and next
 				newNode.Prev = head.Prev
 				newNode.Next = head
@@ -113,6 +120,67 @@ func (dll *Doublylinklist) InsertMiddle(newNode *Node, loc int) {
 		}
 	}
 	return
+}
+
+//deleteFirst ... Delete last element
+func (dll *Doublylinklist) DeleteFirst() int {
+	if !(dll.CheckIfEmpty()) {
+		head := dll.Start
+		if head.Prev == nil {
+			deletedNode := head.Data
+
+			// update doubly linked list
+			dll.Start = head.Next
+			dll.Start.Prev = nil
+			dll.Length--
+
+			return deletedNode
+		}
+	}
+	return -1
+}
+
+//deleteLast ... deletes last element from doublyl linked list
+func (dll *Doublylinklist) DeleteLast() int {
+	if !(dll.CheckIfEmpty()) {
+		// delete from last
+		head := dll.Start
+		for {
+			if head.Next == nil {
+				break
+			}
+			head = head.Next
+		}
+		deletedNode := head.Data
+
+		// update doubly linked list
+		dll.End = head.Prev
+		dll.End.Next = nil
+		dll.Length--
+		return deletedNode
+	}
+	return -1
+}
+
+//DeleteMiddle .. delete from any location
+func (dll *Doublylinklist) DeleteMiddle(pos int) int {
+	if !(dll.CheckIfEmpty()) {
+		//delete from any position
+		head := dll.Start
+		for i := 1; i <= pos; i++ {
+			if head.Next == nil && pos > i {
+				//list is lesser than given position
+				return -1
+			} else if i == pos {
+				// delete from this location
+				head.Prev.Next = head.Next
+				head.Next.Prev = head.Prev
+				dll.Length--
+			}
+			head = head.Next
+		}
+	}
+	return -1
 }
 
 //Print ... Print the doubly linked list
