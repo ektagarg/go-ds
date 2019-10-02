@@ -81,7 +81,7 @@ func (dll *Doublylinklist) InsertEnd(newNode *Node) {
 		for i := 0; i < dll.Length; i++ {
 			if head.Next == nil {
 				// update newnode links - prev and next
-				newNode.Prev = head.Next
+				newNode.Prev = head
 				newNode.Next = nil
 
 				//update head node
@@ -140,7 +140,7 @@ func (dll *Doublylinklist) DeleteFirst() int {
 	return -1
 }
 
-//deleteLast ... deletes last element from doublyl linked list
+//DeleteLast ... deletes last element from doubly linked list
 func (dll *Doublylinklist) DeleteLast() int {
 	if !(dll.CheckIfEmpty()) {
 		// delete from last
@@ -151,13 +151,12 @@ func (dll *Doublylinklist) DeleteLast() int {
 			}
 			head = head.Next
 		}
-		deletedNode := head.Data
 
 		// update doubly linked list
 		dll.End = head.Prev
 		dll.End.Next = nil
 		dll.Length--
-		return deletedNode
+		return head.Data
 	}
 	return -1
 }
@@ -176,6 +175,7 @@ func (dll *Doublylinklist) DeleteMiddle(pos int) int {
 				head.Prev.Next = head.Next
 				head.Next.Prev = head.Prev
 				dll.Length--
+				return head.Data
 			}
 			head = head.Next
 		}
