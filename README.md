@@ -82,6 +82,11 @@ It is a data structure for storing collections of data with the following proper
 * Can grow or shrink in size during the execution of the program
 * Can be made just as long as required(until system memory exhausts)
 
+### Types of linked list
+1. [Singly linked list](linkedlist/Readme.md)
+2. [Doubly linked list](linkedlist/doublylinklist/Readme.md)
+3. [Circular linked list](linkedlist/circularlinklist/Readme.md)
+
 ### Operations:
 Insertion:
 1. Insertion at the beginning
