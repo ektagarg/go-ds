@@ -16,3 +16,18 @@ To understand it in a better way, we can take this example of pile of plates of 
 33                          33                          33
 34                          34                          34
 ```
+
+### Applications:
+
+**Direct applications:**
+1. Balancing of symbols.
+2. Infix to postfix conversion.
+3. Evaluation of postfix Expression.
+4. Implementing the function calls(including recursion)
+5. Page visited history in web browser.
+6. Undo sequence in a text editor.
+7. Matching tags in HTML and XML.
+
+**Indirect Applications:**
+1. Auxiliary data structure for other algorithms. (Example: Tree traversal algorithm)
+2. Component of other data structures (Example: Stimulating queues)
