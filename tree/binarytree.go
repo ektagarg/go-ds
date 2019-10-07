@@ -1,8 +1,11 @@
 package tree
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
-//Node ... craete a new node for tree
+//Node ... create a new node for tree
 type Node struct {
 	Data  int
 	Left  *Node
@@ -52,4 +55,37 @@ func (node *Node) InsertNode(data int) error {
 		}
 	}
 	return node.Left.InsertNode(data)
+}
+
+func (t *Tree) InOrder(node *Node) error {
+	if node == nil {
+		return nil
+	}
+	traversed := []int{}
+	// process left subtree
+
+	if node.Left != nil {
+		fmt.Println("left......")
+		fmt.Println(node.Left.Data)
+		t.InOrder(node.Left)
+	} else {
+		traversed = append(traversed, node.Left.Data)
+		fmt.Println("isssue here......")
+	}
+
+	//process root
+	traversed = append(traversed, node.Data)
+
+	// process right subtree
+	if node.Right != nil {
+		fmt.Println("right......")
+		fmt.Println(node.Right.Data)
+		t.InOrder(node.Right)
+	} else {
+		traversed = append(traversed, node.Right.Data)
+	}
+
+	fmt.Println("traversed......")
+	fmt.Println(traversed)
+	return nil
 }

@@ -14,4 +14,5 @@ func TestInsert(t *testing.T) {
 	tree.Insert(11)
 	tree.Insert(22)
 	tree.Insert(55)
+	tree.InOrder(tree.Root)
 }
