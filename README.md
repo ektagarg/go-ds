@@ -104,3 +104,21 @@ A stack is an ordered list in which insertion and deletion are done at one end, 
 ### Operations:
 1. Push
 2. Pop
+
+# [Tree](tree/Readme.md)
+Tree is an example of non-linear data structures. It is a data structure similar to a linked list but instead of each node pointing simply to the next node in a linear fashion, each node points to a number of nodes. 
+A tree structure is a way of representing the hierarchical nature of a structure in a graphical form.
+
+In trees, order of the elements is not important. If we need ordering information linear data structures like linked lists, stacks, queues can be used.
+
+```
+                                3         <-- Level-0
+                                /\
+                               1  4        <-- Level-1
+                                  /\
+                                 2  6       <-- Level-2
+```
+### [Traversal in trees](tree/Readme.md)
+1. Pre Order Traversal
+2. In Order Traversal
+3. Post Order Traversal

@@ -2,7 +2,6 @@ package tree
 
 import (
 	"errors"
-	"fmt"
 )
 
 //Node ... create a new node for tree
@@ -48,44 +47,55 @@ func (node *Node) InsertNode(data int) error {
 			return nil
 		}
 		return node.Right.InsertNode(data)
-	} else {
-		if node.Left == nil {
-			node.Left = NewNode(data)
-			return nil
-		}
+	}
+	if node.Left == nil {
+		node.Left = NewNode(data)
+		return nil
 	}
 	return node.Left.InsertNode(data)
 }
 
-func (t *Tree) InOrder(node *Node) error {
+//PreOrder ... root, left, right
+func (t *Tree) PreOrder(node *Node, traversed *[]int) {
 	if node == nil {
-		return nil
+		return
 	}
-	traversed := []int{}
+	// process root
+	*traversed = append(*traversed, node.Data)
+
 	// process left subtree
-
-	if node.Left != nil {
-		fmt.Println("left......")
-		fmt.Println(node.Left.Data)
-		t.InOrder(node.Left)
-	} else {
-		traversed = append(traversed, node.Left.Data)
-		fmt.Println("isssue here......")
-	}
-
-	//process root
-	traversed = append(traversed, node.Data)
+	t.PreOrder(node.Left, traversed)
 
 	// process right subtree
-	if node.Right != nil {
-		fmt.Println("right......")
-		fmt.Println(node.Right.Data)
-		t.InOrder(node.Right)
-	} else {
-		traversed = append(traversed, node.Right.Data)
-	}
+	t.PreOrder(node.Right, traversed)
+}
 
-	fmt.Println("traversed......")
-	fmt.Println(traversed)
-	return nil
+//InOrder ... left, root, right
+func (t *Tree) InOrder(node *Node, traversed *[]int) {
+	if node == nil {
+		return
+	}
+	// process left subtree
+	t.InOrder(node.Left, traversed)
+
+	// process root
+	*traversed = append(*traversed, node.Data)
+
+	// process right subtree
+	t.InOrder(node.Right, traversed)
+}
+
+//PostOrder ... left, right, root
+func (t *Tree) PostOrder(node *Node, traversed *[]int) {
+	if node == nil {
+		return
+	}
+	// process left subtree
+	t.PostOrder(node.Left, traversed)
+
+	// process right subtree
+	t.PostOrder(node.Right, traversed)
+
+	// process root
+	*traversed = append(*traversed, node.Data)
 }
