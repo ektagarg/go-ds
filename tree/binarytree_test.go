@@ -53,3 +53,16 @@ func TestPostOrder(t *testing.T) {
 	assert.Equal(t, 7, len(traversed), "Total number of nodes are not correct!")
 	assert.Equal(t, expected, traversed, "post order traversal didn't work")
 }
+
+func TestSearchInSubtree(t *testing.T) {
+	assert.Equal(t, true, tree.Search(67), "search didn't work when element is present")
+	assert.Equal(t, false, tree.Search(69), "search didn't work when element is not present")
+}
+
+func TestMin(t *testing.T) {
+	assert.Equal(t, 11, tree.FindMin(), "find minimum element didn't work")
+}
+
+func TestMax(t *testing.T) {
+	assert.Equal(t, 67, tree.FindMax(), "find maximum element didn't work")
+}

@@ -48,7 +48,7 @@ A tree is called binary tree if each node has zero child, one child or two child
 3. Binary search trees supports search, insertion, deletion on a collection of items in 0(logn)
 
 ### Binary Tree traversal
-1. PreOrder Traversal (Root-Left-Right): In this traversal each node is processed before each of its subtree.
+**1. PreOrder Traversal (Root-Left-Right):** In this traversal each node is processed before each of its subtree.
 
 Process:
 * Visit the Root
@@ -58,7 +58,7 @@ Process:
 Time complexity: o(n)
 Space complexity: o(n)
 
-2. InOrder Traversal (Left-Root-Right): In this traversal the root is visited between its subtrees. It gives a sorted array as a result when applied on binary search tree
+**2. InOrder Traversal (Left-Root-Right):** In this traversal the root is visited between its subtrees. It gives a sorted array as a result when applied on binary search tree
 
 Process:
 * Traverse the left subtree in InOrder
@@ -68,7 +68,7 @@ Process:
 Time complexity: o(n)
 Space complexity: o(n)
 
-3. PostOrder Traversal (Left-Right-Root): In this traversal each node is processed after each of its subtree.
+**3. PostOrder Traversal (Left-Right-Root):** In this traversal each node is processed after each of its subtree.
 
 Process:
 * Traverse the left subtree in PostOrder

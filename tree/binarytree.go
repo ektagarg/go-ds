@@ -99,3 +99,51 @@ func (t *Tree) PostOrder(node *Node, traversed *[]int) {
 	// process root
 	*traversed = append(*traversed, node.Data)
 }
+
+//Search ... search an element in the tree
+func (t *Tree) Search(element int) bool {
+	if t.Root == nil {
+		return false
+	}
+	return t.Root.SearchInSubtree(element)
+}
+
+// SearchInSubtree ... search if it is in the subtree
+func (node *Node) SearchInSubtree(element int) bool {
+	if node == nil {
+		return false
+	}
+
+	switch {
+	case element == node.Data:
+		return true
+	case element < node.Data:
+		return node.Left.SearchInSubtree(element)
+	default:
+		return node.Right.SearchInSubtree(element)
+	}
+}
+
+// FindMax returns the max element from the tree which returns rightmost element
+func (t *Tree) FindMax() int {
+	if t.Root == nil {
+		return -1
+	}
+	current := t.Root
+	for current.Right != nil {
+		current = current.Right
+	}
+	return current.Data
+}
+
+// FindMin returns the max element from the tree which returns leftmost elemet
+func (t *Tree) FindMin() int {
+	if t.Root == nil {
+		return 0
+	}
+	current := t.Root
+	for current.Left != nil {
+		current = current.Left
+	}
+	return current.Data
+}
