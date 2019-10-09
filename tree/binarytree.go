@@ -2,6 +2,7 @@ package tree
 
 import (
 	"errors"
+	"fmt"
 )
 
 //Node ... create a new node for tree
@@ -146,4 +147,45 @@ func (t *Tree) FindMin() int {
 		current = current.Left
 	}
 	return current.Data
+}
+
+// delete in binary search tree
+// 1. no child nodes - simply return node.data
+// 2. one child node - return node.data and move child node to deleted node's position
+// 3. two child nodes - do shifting based on BST properties
+
+func (t *Tree) Delete(node *Node, toBeDeleted int) *Node {
+	if node == nil {
+		return nil
+	}
+	switch {
+	case toBeDeleted < node.Data:
+		return t.Delete(node.Left, toBeDeleted)
+	case toBeDeleted > node.Data:
+		return t.Delete(node.Right, toBeDeleted)
+	default:
+		// all three cases
+		deletedNode := node
+		if node.Left == nil {
+			node = node.Right
+		} else if node.Right == nil {
+			node = node.Left
+		} else {
+			// node with two children
+			d := findReplacement(node)
+			node.Data = d.Data
+			node.Right = t.Delete(node.Right, d.Data)
+			fmt.Println(node.Data)
+		}
+		return deletedNode
+	}
+
+}
+
+func findReplacement(node *Node) *Node {
+	start := node
+	for start.Left != nil {
+		start = start.Left
+	}
+	return start
 }

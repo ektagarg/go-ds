@@ -66,3 +66,8 @@ func TestMin(t *testing.T) {
 func TestMax(t *testing.T) {
 	assert.Equal(t, 67, tree.FindMax(), "find maximum element didn't work")
 }
+
+func TestDelete(t *testing.T) {
+	tree.Root = tree.Delete(tree.Root, 43)
+	assert.Equal(t, 43, tree.Root.Data, "find maximum element didn't work")
+}
