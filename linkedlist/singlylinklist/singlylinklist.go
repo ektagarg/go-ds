@@ -32,13 +32,25 @@ func NewLinkedList() LinkedList {
 	}
 }
 
+func IsEmpty(list *LinkedList) bool {
+	if list.Len == 0 {
+		return true
+	}
+	return false
+}
+
+func InitializeEmpty(list *LinkedList, node *Node) {
+	list.Start = node
+	list.End = node
+	list.Len++
+	return
+}
+
 //InsertBeginning ... Insert at the start of the list
 func (list *LinkedList) InsertBeginning(node *Node) {
 	//check if list if empty
-	if list.Len == 0 {
-		list.Start = node
-		list.End = node
-		list.Len++
+	if IsEmpty(list) {
+		InitializeEmpty(list, node)
 		return
 	}
 
@@ -51,10 +63,8 @@ func (list *LinkedList) InsertBeginning(node *Node) {
 //InsertEnd ... Insert at the end of the list
 func (list *LinkedList) InsertEnd(node *Node) {
 	//check if list if empty
-	if list.Len == 0 {
-		list.Start = node
-		list.End = node
-		list.Len++
+	if IsEmpty(list) {
+		InitializeEmpty(list, node)
 		return
 	}
 
@@ -76,10 +86,8 @@ func (list *LinkedList) InsertEnd(node *Node) {
 //InsertAtPosition ... Insert at a specific position
 func (list *LinkedList) InsertAtPosition(node *Node, pos int) {
 	//check if list if empty
-	if list.Len == 0 {
-		list.Start = node
-		list.End = node
-		list.Len++
+	if IsEmpty(list) {
+		InitializeEmpty(list, node)
 		return
 	}
 
