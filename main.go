@@ -5,11 +5,11 @@ import (
 	"log"
 	"time"
 
-	bs "./Arrays/Search/binary_search"
-	ls "./Arrays/Search/linear_search"
-	bbs "./Arrays/Sort/bubble_sort"
-	is "./Arrays/Sort/insertion_sort"
-	ss "./Arrays/Sort/selection_sort"
+	bs "./array/search/binary_search"
+	ls "./array/search/linear_search"
+	bbs "./array/sort/bubble_sort"
+	is "./array/sort/insertion_sort"
+	ss "./array/sort/selection_sort"
 )
 
 func main() {
