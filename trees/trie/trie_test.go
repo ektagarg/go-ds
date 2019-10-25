@@ -1,6 +1,10 @@
 package trie
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 var trie = CreateTrie()
 
@@ -15,5 +19,13 @@ func TestDelete(t *testing.T) {
 }
 
 func TestSearch(t *testing.T) {
-	// ...
+	lookup := []string{"a", "b", "c"}
+
+	expected := []Data{10, 11, 12}
+
+	for i, look := range lookup {
+		ans, err := trie.Search([]rune(look))
+		assert.Equal(t, ans, expected[i], "should be equal")
+		assert.Equal(t, err, nil, "should be equal")
+	}
 }
