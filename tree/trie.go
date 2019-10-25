@@ -48,16 +48,34 @@ func (t *Trie) Insert(data Data, prefix string) error {
 
 	n := t.root
 	// Move to the last existing node
-	for c := range prefix {
+	for i, c := range prefix {
 		if !n.charInNodeChildren(c) { // Go to next child
-			// createSubTree(n, rest_of_prefix)
+			lastChar := i
 			break // Stops when child with prefix char doesn't exist
 		}
 	}
 
-	n := CreateNode(data, prefix)
+	remainingPrefix = []rune(prefix)[lastChar:]
+	return n.createSubTree(data, remainingPrefix)
+}
 
-	return t.insertNode(n)
+// createSubTree inserts the rest of a prefix beginning
+// in the Node n.
+func (n *Node) createSubTree(data Data, prefix []rune) error {
+	var newNode *Node = nil
+	var newNodeDad *Node = n
+
+	for _, c := range prefix {
+		newNode = CreateNode(data, false, c)
+		newNodeDad.children = append(newNodeDad, newNode)
+		newNodeDad = newNode
+	}
+
+	// Insert data in last node
+	newNode.isTerminal = true
+	newNode.data = data
+
+	return nil
 }
 
 // charInNodeChildren returns true if it finds c as
@@ -70,7 +88,7 @@ func (n *Node) charInNodeChildren(c rune) bool {
 		return false
 	}
 
-	for child := range n.children {
+	for _, child := range n.children {
 		if child.prefix == c {
 			n = child
 			return true
@@ -78,10 +96,6 @@ func (n *Node) charInNodeChildren(c rune) bool {
 	}
 
 	return false
-}
-
-func (t *Trie) insertNode(n *Node) error {
-
 }
 
 // Delete searches for a prefix in the Trie.
@@ -98,7 +112,8 @@ func (t *Trie) Search(prefix string) (string, error) {
 		return "", errors.New("Can't search in nil trie")
 	}
 
-	for aux := range t.Children {
+	// Search in roots children nodes
+	for _, aux := range t.Children {
 		if strings.HasPrefix(prefix, aux.Prefix) {
 			return searchFromNode(prefix, aux)
 		}
@@ -107,13 +122,15 @@ func (t *Trie) Search(prefix string) (string, error) {
 	return "", errors.New("Didn't find prefix")
 }
 
+// searchFromNode searches for a prefix string starting in the
+// node Node.
 func searchFromNode(prefix string, node *Node) (string, error) {
 	// Found prefix on current node
 	if node.Prefix == prefix {
 		return node.Data, nil
 	}
 
-	for aux := range node.Children {
+	for _, aux := range node.Children {
 		if strings.HasPrefix(prefix, aux.Prefix) {
 			return searchFromNode(prefix, aux)
 		}
