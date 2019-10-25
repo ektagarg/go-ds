@@ -2,7 +2,6 @@ package trie
 
 import (
 	"errors"
-	"strings"
 )
 
 // Data is the data type the trie holds
@@ -107,35 +106,32 @@ func (t *Trie) Delete(prefix string) error {
 // Search looks for the node indexed by prefix.
 // Returns a string containing the data if prefix exists.
 // Returns an empty string and error if prefix doesn't exist.
-func (t *Trie) Search(prefix string) (string, error) {
+func (t *Trie) Search(prefix []rune) (Data, error) {
 	if t == nil {
-		return "", errors.New("Can't search in nil trie")
+		return nil, errors.New("Can't search in nil trie")
 	}
 
-	// Search in roots children nodes
-	for _, aux := range t.Children {
-		if strings.HasPrefix(prefix, aux.Prefix) {
-			return searchFromNode(prefix, aux)
+	if prefix == nil {
+		return nil, errors.New("Can't search nil prefix")
+	}
+
+	// Lookup node starts at root
+	lookup := t.root
+
+	for _, c := range prefix {
+		for i, n := range lookup.children {
+			if n.prefix == c { // found prefix, update lookup (go down)
+				lookup = n
+				break
+			}
+			if i == len(lookup.children)-1 { // at the last child of lookup
+				return nil, errors.New("Didn't find prefix")
+			}
 		}
 	}
 
-	return "", errors.New("Didn't find prefix")
-}
-
-// searchFromNode searches for a prefix string starting in the
-// node Node.
-func searchFromNode(prefix string, node *Node) (string, error) {
-	// Found prefix on current node
-	if node.Prefix == prefix {
-		return node.Data, nil
+	if lookup.isTerminal {
+		return lookup.data, nil
 	}
-
-	for _, aux := range node.Children {
-		if strings.HasPrefix(prefix, aux.Prefix) {
-			return searchFromNode(prefix, aux)
-		}
-	}
-
-	// Couldn't find prefix (node doesn't exist)
-	return nil, errors.New("Couldn't find prefix")
+	return nil, errors.New("Leaf node is not terminal")
 }
