@@ -5,33 +5,38 @@ import (
 	"strings"
 )
 
+// Data is the data type the trie holds
+
+type Data int
+
 // Trie is the root of the tree.
 // It doesn't have any data or prefixes.
 type Trie struct {
-	Children []*Node
+	root *Node
 }
 
 // Node is a node of the Trie.
 type Node struct {
-	Data     string
-	Prefix   string
-	Children []*Node
+	data       Data
+	isTerminal bool
+	prefix     rune
+	children   []*Node
 }
 
 // CreateTrie creates an empty Trie tree and returns it.
 func CreateTrie() *Trie {
-	return &Trie{nil}
+	return &Trie{&Node{nil, nil, nil, nil}}
 }
 
-// CreateNode creates a new node containing data and prefix string.
 // Returns a pointer to that node.
-func CreateNode(data, prefix string) *Node {
-	return &Node{data, prefix, nil}
+// CreateNode creates a new node.
+func CreateNode(data Data, isTerminal bool, prefix rune) *Node {
+	return &Node{data, isTerminal, prefix, nil}
 }
 
 // Insert appends a node (n) containing data and prefix to the trie.
 // Returns an error if the node already exists.
-func (t *Trie) Insert(data, prefix string) error {
+func (t *Trie) Insert(data Data, prefix string) error {
 
 	if prefix == "" || prefix == nil {
 		return errors.New("Can't insert node with empty prefix")
@@ -41,9 +46,38 @@ func (t *Trie) Insert(data, prefix string) error {
 		return errors.New("Can't insert on nil trie")
 	}
 
+	n := t.root
+	// Move to the last existing node
+	for c := range prefix {
+		if !n.charInNodeChildren(c) { // Go to next child
+			// createSubTree(n, rest_of_prefix)
+			break // Stops when child with prefix char doesn't exist
+		}
+	}
+
 	n := CreateNode(data, prefix)
 
 	return t.insertNode(n)
+}
+
+// charInNodeChildren returns true if it finds c as
+// a prefix in any of n's children and points n to
+// the child where it found c.
+// Returns false and n remains unaltered otherwise
+func (n *Node) charInNodeChildren(c rune) bool {
+
+	if n.children == nil {
+		return false
+	}
+
+	for child := range n.children {
+		if child.prefix == c {
+			n = child
+			return true
+		}
+	}
+
+	return false
 }
 
 func (t *Trie) insertNode(n *Node) error {
