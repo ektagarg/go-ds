@@ -1,23 +1,19 @@
-package tree
+package trie
 
 import "testing"
 
-func TestCreateTrie(t *testing.T) {
-	trie := tree.CreateTrie()
-	// ...
-}
+var trie = CreateTrie()
 
 func TestInsert(t *testing.T) {
-	trie := tree.CreateTrie()
-	// ...
+	trie.Insert(10, "a")
+	trie.Insert(11, "b")
+	trie.Insert(12, "c")
 }
 
 func TestDelete(t *testing.T) {
-	trie := tree.CreateTrie()
 	// ...
 }
 
 func TestSearch(t *testing.T) {
-	trie := tree.CreateTrie()
 	// ...
 }
