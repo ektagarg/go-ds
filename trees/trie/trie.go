@@ -5,7 +5,6 @@ import (
 )
 
 // Data is the data type the trie holds
-
 type Data int
 
 // Trie is the root of the tree.
@@ -24,7 +23,7 @@ type Node struct {
 
 // CreateTrie creates an empty Trie tree and returns it.
 func CreateTrie() *Trie {
-	return &Trie{&Node{nil, nil, nil, nil}}
+	return &Trie{&Node{}}
 }
 
 // Returns a pointer to that node.
@@ -35,9 +34,9 @@ func CreateNode(data Data, isTerminal bool, prefix rune) *Node {
 
 // Insert appends a node (n) containing data and prefix to the trie.
 // Returns an error if the node already exists.
-func (t *Trie) Insert(data Data, prefix string) error {
+func (t *Trie) Insert(data Data, prefix []rune) error {
 
-	if prefix == "" || prefix == nil {
+	if len(prefix) == 0 {
 		return errors.New("Can't insert node with empty prefix")
 	}
 
@@ -46,15 +45,16 @@ func (t *Trie) Insert(data Data, prefix string) error {
 	}
 
 	n := t.root
+	lastChar := 0
 	// Move to the last existing node
 	for i, c := range prefix {
 		if !n.charInNodeChildren(c) { // Go to next child
-			lastChar := i
+			lastChar = i
 			break // Stops when child with prefix char doesn't exist
 		}
 	}
 
-	remainingPrefix = []rune(prefix)[lastChar:]
+	remainingPrefix := []rune(prefix)[lastChar:]
 	return n.createSubTree(data, remainingPrefix)
 }
 
@@ -66,7 +66,7 @@ func (n *Node) createSubTree(data Data, prefix []rune) error {
 
 	for _, c := range prefix {
 		newNode = CreateNode(data, false, c)
-		newNodeDad.children = append(newNodeDad, newNode)
+		(*newNodeDad).children = append((*newNodeDad).children, newNode)
 		newNodeDad = newNode
 	}
 
@@ -101,6 +101,7 @@ func (n *Node) charInNodeChildren(c rune) bool {
 // Removes the node and rearranges the tree if prefix exists.
 // Returns an error if prefix doesn't exist.
 func (t *Trie) Delete(prefix string) error {
+	return nil // placeholder
 }
 
 // Search looks for the node indexed by prefix.
@@ -108,11 +109,11 @@ func (t *Trie) Delete(prefix string) error {
 // Returns an empty string and error if prefix doesn't exist.
 func (t *Trie) Search(prefix []rune) (Data, error) {
 	if t == nil {
-		return nil, errors.New("Can't search in nil trie")
+		return 0, errors.New("Can't search in nil trie")
 	}
 
 	if prefix == nil {
-		return nil, errors.New("Can't search nil prefix")
+		return 0, errors.New("Can't search nil prefix")
 	}
 
 	// Lookup node starts at root
@@ -125,7 +126,7 @@ func (t *Trie) Search(prefix []rune) (Data, error) {
 				break
 			}
 			if i == len(lookup.children)-1 { // at the last child of lookup
-				return nil, errors.New("Didn't find prefix")
+				return 0, errors.New("Didn't find prefix")
 			}
 		}
 	}
@@ -133,5 +134,5 @@ func (t *Trie) Search(prefix []rune) (Data, error) {
 	if lookup.isTerminal {
 		return lookup.data, nil
 	}
-	return nil, errors.New("Leaf node is not terminal")
+	return 0, errors.New("Leaf node is not terminal")
 }
