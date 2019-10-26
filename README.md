@@ -75,6 +75,16 @@ Worst complexity: Depends on gap sequence
 Average complexity: n*log(n)^2 or n^(3/2)
 Best complexity: n
 ```
+
+**8. [Cycle Sort](array/sort/cycle_sort/Readme.md):** Cycle sort is an in-place, unstable sorting algorithm, a comparison sort that is theoretically optimal in terms of the total number of writes to the original array, unlike any other in-place sorting algorithm. It is based on the idea that the permutation to be sorted can be factored into cycles, which can individually be rotated to give a sorted result.
+
+```
+Worst-case performance	Θ(n2)
+Best-case performance	Θ(n2)
+Average performance	Θ(n2)
+Worst-case space complexity	Θ(n) total, Θ(1) auxiliary
+```
+
 # [Linked lists](linkedlist/Readme.md)
 It is a data structure for storing collections of data with the following properties:
 * Successive elements are connected via pointers
