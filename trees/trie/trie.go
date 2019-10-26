@@ -136,3 +136,31 @@ func (t *Trie) Search(prefix []rune) (Data, error) {
 	}
 	return 0, errors.New("Leaf node is not terminal")
 }
+
+// PrintTrie prints trie showing parent-child relationships
+func (t *Trie) PrintTrie() error {
+	if t.root.children == nil {
+		return nil
+	}
+
+	for _, n := range t.root.children {
+		fmt.Printf("%s: %d\n", string(n.prefix), int(n.data))
+		n.printSubTree(1)
+	}
+
+	return nil
+}
+
+func (n *Node) printSubTree(tabs int) error {
+	if n.children == nil {
+		return nil
+	}
+
+	for _, aux := range n.children {
+		fmt.Printf(strings.Repeat(" ", tabs))
+		fmt.Printf("%s: %d\n", string(aux.prefix), int(aux.data))
+		aux.printSubTree(tabs + 1)
+	}
+
+	return nil
+}
