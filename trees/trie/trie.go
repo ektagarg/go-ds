@@ -109,8 +109,21 @@ func (n *Node) hasChildWithPrefix(c rune) *Node {
 // Delete searches for a prefix in the Trie.
 // Removes the node and rearranges the tree if prefix exists.
 // Returns an error if prefix doesn't exist.
-func (t *Trie) Delete(prefix string) error {
-	return nil // placeholder
+func (t *Trie) Delete(prefix []rune) error {
+
+	if t == nil {
+		return errors.New("Can't delete in nil trie")
+	}
+
+	if prefix == nil {
+		return errors.New("Can't delete nil prefix")
+	}
+
+	return t.root.deleteNode(prefix)
+}
+
+func (n *Node) deleteNode(prefix []rune) error {
+
 }
 
 // Search looks for the node indexed by prefix.
