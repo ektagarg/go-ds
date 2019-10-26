@@ -23,6 +23,13 @@ var deleteEntries = []string{
 	"assign",
 }
 
+var updateEntries = []string{
+	"andromeda",
+	"as",
+	"b",
+	"ah don't know",
+}
+
 func TestInsert(t *testing.T) {
 	for i, entry := range insertEntries {
 		trie.Insert(Data(i), []rune(entry))
@@ -43,4 +50,12 @@ func TestDelete(t *testing.T) {
 		trie.Delete([]rune(entry))
 	}
 	trie.PrintTrie()
+}
+
+func TestUpdate(t *testing.T) {
+	for _, entry := range updateEntries {
+		trie.Update([]rune(entry), 1234)
+		ans, _ := trie.Search([]rune(entry))
+		assert.Equal(t, Data(1234), ans, "should be equal")
+	}
 }

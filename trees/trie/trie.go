@@ -161,6 +161,20 @@ func (t *Trie) Delete(prefix []rune) error {
 	return nil
 }
 
+// Update searches for a prefix in the Trie.
+// Updates the node if prefix exists.
+// Returns an error if prefix doesn't exist.
+func (t *Trie) Update(prefix []rune, data Data) error {
+	n, err := t.searchNode(prefix)
+
+	if n != nil {
+		n.data = data
+		return nil
+	}
+
+	return err
+}
+
 // Search looks for the node indexed by prefix.
 // Returns a string containing the data if prefix exists.
 // Returns an empty string and error if prefix doesn't exist.
@@ -173,6 +187,18 @@ func (t *Trie) Search(prefix []rune) (Data, error) {
 		return 0, errors.New("Can't search nil prefix")
 	}
 
+	n, err := t.searchNode(prefix)
+
+	if n != nil {
+		return n.data, nil
+	}
+
+	return 0, err
+}
+
+// searchNode returns the node containing the data for prefix.
+// Returns an error if the prefix doesn't exist in the tree.
+func (t *Trie) searchNode(prefix []rune) (*Node, error) {
 	// Lookup node starts at root
 	lookup := t.root
 
@@ -183,15 +209,16 @@ func (t *Trie) Search(prefix []rune) (Data, error) {
 				break
 			}
 			if i == len(lookup.children)-1 { // at the last child of lookup
-				return 0, errors.New("Didn't find prefix")
+				return nil, errors.New("Didn't find prefix")
 			}
 		}
 	}
 
 	if lookup.isTerminal {
-		return lookup.data, nil
+		return lookup, nil
 	}
-	return 0, errors.New("Leaf node is not terminal")
+
+	return nil, errors.New("Didn't find prefix")
 }
 
 // PrintTrie prints trie showing parent-child relationships
