@@ -2,6 +2,8 @@ package trie
 
 import (
 	"errors"
+	"fmt"
+	"strings"
 )
 
 // Data is the data type the trie holds
@@ -26,8 +28,8 @@ func CreateTrie() *Trie {
 	return &Trie{&Node{}}
 }
 
-// Returns a pointer to that node.
 // CreateNode creates a new node.
+// Returns a pointer to that node.
 func CreateNode(data Data, isTerminal bool, prefix rune) *Node {
 	return &Node{data, isTerminal, prefix, nil}
 }
@@ -48,10 +50,12 @@ func (t *Trie) Insert(data Data, prefix []rune) error {
 	lastChar := 0
 	// Move to the last existing node
 	for i, c := range prefix {
-		if !n.charInNodeChildren(c) { // Go to next child
+		aux := n.hasChildWithPrefix(c)
+		if aux == nil { // doesn't have child, insert it
 			lastChar = i
 			break // Stops when child with prefix char doesn't exist
 		}
+		n = aux // has child, go down in tree
 	}
 
 	remainingPrefix := []rune(prefix)[lastChar:]
@@ -61,11 +65,18 @@ func (t *Trie) Insert(data Data, prefix []rune) error {
 // createSubTree inserts the rest of a prefix beginning
 // in the Node n.
 func (n *Node) createSubTree(data Data, prefix []rune) error {
-	var newNode *Node = nil
-	var newNodeDad *Node = n
+	var newNode *Node
+	var newNodeDad = n
+
+	// Node already exists, make terminal
+	if len(prefix) == 1 && n.prefix == prefix[0] {
+		n.isTerminal = true
+		n.data = data
+		return nil
+	}
 
 	for _, c := range prefix {
-		newNode = CreateNode(data, false, c)
+		newNode = CreateNode(-1, false, c)
 		(*newNodeDad).children = append((*newNodeDad).children, newNode)
 		newNodeDad = newNode
 	}
@@ -77,24 +88,22 @@ func (n *Node) createSubTree(data Data, prefix []rune) error {
 	return nil
 }
 
-// charInNodeChildren returns true if it finds c as
-// a prefix in any of n's children and points n to
-// the child where it found c.
-// Returns false and n remains unaltered otherwise
-func (n *Node) charInNodeChildren(c rune) bool {
+// hasChildWithPrefix returns a *Node containing
+// the child of n that has a prefix of c.
+// Returns false otherwise.
+func (n *Node) hasChildWithPrefix(c rune) *Node {
 
 	if n.children == nil {
-		return false
+		return nil
 	}
 
 	for _, child := range n.children {
 		if child.prefix == c {
-			n = child
-			return true
+			return child
 		}
 	}
 
-	return false
+	return nil
 }
 
 // Delete searches for a prefix in the Trie.

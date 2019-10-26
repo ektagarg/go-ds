@@ -7,16 +7,22 @@ import (
 )
 
 var trie = CreateTrie()
+var entries = []string{
+	"and",
+	"a",
+	"b",
+	"c",
+	"andromeda",
+	"as",
+	"assign",
+	"ah don't know",
+}
 
 func TestInsert(t *testing.T) {
-	trie.Insert(10, []rune("a"))
-	trie.Insert(11, []rune("b"))
-	trie.Insert(12, []rune("c"))
-
-	trie.Insert(13, []rune("and"))
-	trie.Insert(14, []rune("as"))
-	trie.Insert(15, []rune("assign"))
-	trie.Insert(16, []rune("ah don't know"))
+	for i, entry := range entries {
+		trie.Insert(Data(i), []rune(entry))
+	}
+	trie.PrintTrie()
 }
 
 func TestDelete(t *testing.T) {
@@ -24,13 +30,9 @@ func TestDelete(t *testing.T) {
 }
 
 func TestSearch(t *testing.T) {
-	lookup := []string{"a", "b", "c", "and", "as", "assign", "ah don't know"}
-
-	expected := []Data{10, 11, 12, 13, 14, 15, 16}
-
-	for i, look := range lookup {
-		ans, err := trie.Search([]rune(look))
-		assert.Equal(t, ans, expected[i], "should be equal")
-		assert.Equal(t, err, nil, "should be equal")
+	for expected, lookup := range entries {
+		ans, err := trie.Search([]rune(lookup))
+		assert.Equal(t, Data(expected), ans, "should be equal")
+		assert.Equal(t, nil, err, "should be equal")
 	}
 }
