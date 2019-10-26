@@ -7,7 +7,7 @@ import (
 )
 
 var trie = CreateTrie()
-var entries = []string{
+var insertEntries = []string{
 	"and",
 	"a",
 	"b",
@@ -18,21 +18,29 @@ var entries = []string{
 	"ah don't know",
 }
 
+var deleteEntries = []string{
+	"and",
+	"assign",
+}
+
 func TestInsert(t *testing.T) {
-	for i, entry := range entries {
+	for i, entry := range insertEntries {
 		trie.Insert(Data(i), []rune(entry))
 	}
 	trie.PrintTrie()
 }
 
-func TestDelete(t *testing.T) {
-	// ...
-}
-
 func TestSearch(t *testing.T) {
-	for expected, lookup := range entries {
+	for expected, lookup := range insertEntries {
 		ans, err := trie.Search([]rune(lookup))
 		assert.Equal(t, Data(expected), ans, "should be equal")
 		assert.Equal(t, nil, err, "should be equal")
 	}
+}
+
+func TestDelete(t *testing.T) {
+	for _, entry := range deleteEntries {
+		trie.Delete([]rune(entry))
+	}
+	trie.PrintTrie()
 }

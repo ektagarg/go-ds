@@ -119,11 +119,46 @@ func (t *Trie) Delete(prefix []rune) error {
 		return errors.New("Can't delete nil prefix")
 	}
 
-	return t.root.deleteNode(prefix)
-}
+	lookup := t.root
+	lastUseful := t.root
+	deleteIDX := -1
 
-func (n *Node) deleteNode(prefix []rune) error {
+	// Get last useful node (which we can't delete)
+	for i, c := range prefix {
+		// We can't delete lookup if it has more than 1 child
+		// or if it is terminal for another prefix
+		if len(lookup.children) > 1 ||
+			(lookup.isTerminal && i != len(prefix)-1) {
+			lastUseful = lookup
+		}
+		// Go down in tree
+		for j, n := range lookup.children {
+			if n.prefix == c {
+				if lastUseful == lookup {
+					deleteIDX = j
+				}
+				lookup = n
+				break
+			}
+			if j == len(lookup.children)-1 {
+				return errors.New("Didn't find prefix")
+			}
+		}
+	}
 
+	if len(lookup.children) > 0 {
+		lookup.isTerminal = false
+		lookup.data = -1
+	} else {
+		// Remove subtree below lastUseful at index deleteIDX
+		lastUseful.children[deleteIDX] =
+			lastUseful.children[len(lastUseful.children)-1]
+
+		(*lastUseful).children =
+			(*lastUseful).children[:len((*lastUseful).children)-1]
+	}
+
+	return nil
 }
 
 // Search looks for the node indexed by prefix.
