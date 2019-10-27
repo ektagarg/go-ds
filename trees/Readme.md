@@ -77,3 +77,56 @@ Process:
 
 Time complexity: o(n)
 Space complexity: o(n)
+
+
+### Trie
+
+Suppose you want to code a dictionary to compete with [Oxford's dictionary](https://www.lexico.com/en). In your dictionary, the user would type in a word and the code would look up its definition (similar to `Ctrl-F`).
+How would you code this?
+Well, one thing you could do is put every word in a list and iterate through this list word by word, and each word letter by letter:
+
+```
+for every word in the dictionary
+    for every letter in the word
+        is letter in dict == lookup word letter?
+```
+
+That's not a very optimized way of doing this -- in other words, it's slow as hell!
+Let's say your dictionary has `N` words and its biggest word is `M` letters long.
+This means that in the worst case the time complexity of your lookup is `O(N*M)`.
+How can we make this faster?
+
+
+A [Trie](https://en.wikipedia.org/wiki/Trie) is a *prefix tree*, meaning it finds information (usually strings) by looking at the prefix of the data being looked up.
+In our dictionary example, instead of putting our words inside a list, we could create a trie with them.
+In a trie, every time you go down a level you get closer to the "answer".
+Imagine our dictionary is very small and contains only the words "apple", "an", "as" and "hand".
+The structure would look somewhat like this:
+
+```
+                                R            <-- Level-0 (Root is always empty)
+                               / \
+                              a  hand        <-- Level-1
+                            / | \
+                          an apple as        <-- Level-2
+```
+
+**Obs:** Depending on the implementation the order of the nodes could be different.
+
+Suppose now that you insert hard in this trie, here's what it would look like:
+
+```
+                                R            <-- Level-0 (Root is always empty)
+                               / \
+                              a  hand        <-- Level-1
+                            / | \
+                          an apple as        <-- Level-2
+```
+
+- Insertion time complexity: o(w)
+- Trie creation time complexity: o(n*m)
+- Deletion time complexity: o(w)
+- Lookup time complexity: o(w)
+- Space complexity: o(n*m)
+
+**Obs:** *w* is the length of the input (e.g. number of letters in the lookup string), *n* is the number of words in the trie, and *m* is the average length of each word in the trie
