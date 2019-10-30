@@ -16,6 +16,5 @@ func TestGraph(t *testing.T) {
 	graph.AddEdge(1, 3, 11)
 	graph.AddEdge(1, 2, 8)
 	graph.Print()
-	PrimsAlgorithm(graph)
-
+	PrimsAlgorithm(graph, true)
 }
