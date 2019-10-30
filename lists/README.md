@@ -188,4 +188,6 @@ If you ever needed to use a subway to go around you probably know that there are
 ```
 Imagine that you need to go from station A to station J. The fastest line is 4 because it goes directly from A to J. However,if we wanted to go from A to B then we'd go with line 1. But what if we wanted to go from A to H? Well, we'd take the line 3 to go from A to E, then we'd switch lines at station E and use line 2 to go from E to G, then switch lines again and take line 1 to go from G to H.
 
-Skip lists work just like subways. In a skip list each station is a leaf node containing data and each
+Skip lists work just like subways. In a skip list each station is a node containing data and each connection between two stations is a pointer from one node to the other. In terms of operations going from one station to the other, be it from A to B (using line 1) or from A to J (using line 4) costs the same: one pointer dereference.
+
+**Obs:** It is desirable for the lines to be doubly linked lists because there are times when it might actually be cheaper (in terms of operations) to skip a node and then go backwards towards it. For example, if we want to go from A to I it's cheaper to go from A to J using line 4 and then go back from J to I using either line 1 or 2. This is only possible if J has a pointer to I (i.e. it's a doubly linked list).
