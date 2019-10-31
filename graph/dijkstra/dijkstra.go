@@ -1,4 +1,4 @@
-package sort
+package graph
 
 //utility variable used only for comparison purposes
 const maxInt32 int32 = 1<<31 - 1

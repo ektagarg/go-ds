@@ -1,4 +1,4 @@
-package sort
+package graph
 
 import (
 	"github.com/stretchr/testify/assert"
