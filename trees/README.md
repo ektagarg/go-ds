@@ -130,3 +130,4 @@ Suppose now that you insert hard in this trie, here's what it would look like:
 - Space complexity: o(n*m)
 
 **Obs:** *w* is the length of the input (e.g. number of letters in the lookup string), *n* is the number of words in the trie, and *m* is the average length of each word in the trie
+
